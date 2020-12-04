@@ -16,5 +16,9 @@ export default {
 }
 </script>
 
+
 <style>
+    @import "assets/css/bootstrap.css";
+    @import "assets/css/style.css";
 </style>
+

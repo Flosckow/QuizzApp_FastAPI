@@ -1,0 +1,33 @@
+version: '3.8'
+
+
+services:
+  user-database:
+    restart: always
+    container_name: 'fast_api'
+    image: postgres:12
+    ports:
+      - '54320:5432'
+    volumes:
+    - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER = "adminuser"
+      - POSTGRES_PASSWORD = "123"
+      - POSTGRES_DB = "postgres"
+    networks:
+      - fast_api
+  fast_api:
+      build: .
+      container_name: "core-api-container"
+      ports:
+        - '8000:8000'
+      volumes:
+        - .:/home/daniel/quizz/
+
+
+volumes:
+  postgres_data:
+
+networks:
+  fastt_api:
+    name: fast_api

@@ -5,6 +5,9 @@ import Poll from '../components/Poll.vue'
 import Survey from '../components/Survey.vue'
 import CreateSurvey from '../components/CreateSurvey.vue'
 import CreatePoll from '../components/CreatePoll.vue'
+import Registration from '../components/users/Registration.vue'
+import Login from '../components/users/Login.vue'
+
 
 Vue.use(VueRouter)
 
@@ -33,6 +36,16 @@ const routes = [
         path: '/survey/create',
         name: 'CreateSurvey',
         component: CreateSurvey
+    },
+    {
+        path: '/registration',
+        name: 'Registration',
+        component: Registration
+    },
+    {
+        path: '/login',
+        name: 'Login',
+        component: Login
     }
 ]
 
