@@ -17,6 +17,7 @@ BACKEND_CORS_ORIGINS = [
     "http://localhost:4200",
     "http://localhost:3000",
     "http://localhost:8080",
+    'http://192.168.0.12:8080/',
 ]
 
 # Data Base

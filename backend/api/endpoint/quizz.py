@@ -14,7 +14,7 @@ async def create_poll(item: schemas.PollCreate):
     return await views.create_poll(item=item)
 
 
-@router.get("/poll/all", response_model=List[schemas.PollList])
+@router.get("/poll/all", response_model=List[schemas.PollOut])
 async def get_poll_list():
     return await views.get_poll_list()
 
@@ -56,15 +56,7 @@ async def delete_survey(survey_id: int):
     return await views.delete_survey(survey_id)
 
 
-# @router.post("/", status_code=201, response_model=PostSingle)
-# async def post_create(item: PostCreate, user: User = Depends(fastapi_users.get_current_active_user)):
-#     return await service.create_post(item, user)
-
-@router.post("/q/post", response_model=schemas.QuestionCreate, status_code=201)
-async def create_q(item: schemas.QuestionCreate):
-    return await views.Q_create(item=item)
 
 
-@router.post("/a/post", response_model=schemas.AnswerCreate, status_code=201)
-async def create_a(item: schemas.AnswerCreate):
-    return await views.A_create(item=item)
+
+

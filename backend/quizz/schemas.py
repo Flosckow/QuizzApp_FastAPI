@@ -2,24 +2,41 @@ from typing import List, Optional
 from pydantic import BaseModel
 
 
-class Answer(BaseModel):
-    id: int
+class AnswerBase(BaseModel):
     text: str
-    question: str
 
     class Config:
         orm_mode = True
 
 
-class Question(BaseModel):
-    id: int
+class AnswerCreate(AnswerBase):
+    question_id: int
+
+
+class AnswerCreateForSurvey(AnswerBase):
+    survey_id: int
+
+
+class AnswerOut(AnswerBase):
+    pass
+
+
+class QuestionBase(BaseModel):
     q: str
     visible: bool
     max_points: float
-    question: List[Answer] = []
 
     class Config:
         orm_mode = True
+
+
+class QuestionOut(QuestionBase):
+    answers: List[AnswerOut]
+
+
+class QuestionCreate(QuestionBase):
+    answers: List[AnswerBase]
+
 
 # добавить пользователей
 class SurveyBase(BaseModel):
@@ -32,6 +49,7 @@ class SurveyBase(BaseModel):
 
 class SurveyCreate(SurveyBase):
     description: str
+    answers: List[AnswerBase]
 
 
 class SurveyUpdate(SurveyBase):
@@ -39,13 +57,14 @@ class SurveyUpdate(SurveyBase):
 
 
 class SurveyGet(SurveyBase):
-    id: int
+    # id: int
     description: str = None
+    answers: List[AnswerOut]
 
 
 class SurveyList(SurveyBase):
-    id: int
-    pass
+    description: str
+    answers: List[AnswerOut]
 
 
 class SurveyDelete(SurveyBase):
@@ -57,23 +76,28 @@ class PollBase(BaseModel):
     """Base model schemas poll"""
     title: str
     description: str
-    survey_id: int
-    poll: List[Question]
+    survey_id: Optional[int]
 
     class Config:
         orm_mode = True
 
 
+class PollOut(PollBase):
+    id: int
+    questions: List[QuestionCreate]
+
+
 class PollList(PollBase):
-    pass
+    # id: int
+    questions: List[QuestionOut]
 
 
 class PollCreate(PollBase):
-    pass
+    questions: List[QuestionCreate]
 
 
 class PollSingle(PollBase):
-    free_answer: str = None
+    questions: List[QuestionOut]
 
 
 class PollGet(PollBase):
@@ -82,11 +106,3 @@ class PollGet(PollBase):
 
 class PollDelete(PollBase):
     id: int
-
-
-class QuestionCreate(Question):
-    pass
-
-
-class AnswerCreate(Answer):
-    pass

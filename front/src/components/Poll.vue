@@ -6,7 +6,7 @@
           <div class="product-shoe-info editContent text-center mt-lg-4">
             <div class="item-info-product">
               <h4 class="">
-                <a href="#" @click="goTo(survey.id)" class="editContent">{{poll.title}}</a>
+                <a href="#" @click="goTo(poll.id)" class="editContent">{{poll.title}}</a>
               </h4>
             </div>
           </div>
@@ -33,7 +33,7 @@ export default {
         })
       },
       goTo(id) {
-        this.$router.push({ name: 'PollSingle', params: {id: id} })
+        this.$router.push({ name: 'One_poll_action', params: {id: id} })
       },
     },
     created() {

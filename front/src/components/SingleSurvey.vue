@@ -151,4 +151,40 @@
         box-shadow: 0 5px #666;
         transform: translateY(4px);
     }
+    .single {
+        outline: none;
+        outline-offset: -2px;
+        cursor: inherit;
+        color: rgb(33, 37, 41);
+        font-size: 16px;
+        background-color: rgba(0, 0, 0, 0);
+        font-family: Lato, sans-serif;
+    }
+    .li-movie{
+        list-style: none;
+    }
+    .login {
+        display: inline-block;
+        padding: 10px 15px;
+        font-size: 14px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #dd9475;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 9px #999;
+        margin-left: 5px;
+        margin-right: 5px
+    }
+
+    .login:hover {background-color: #bf5830}
+
+    .login:active {
+        background-color: #3e8e41;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+    }
 </style>

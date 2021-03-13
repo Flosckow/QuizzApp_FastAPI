@@ -1,3 +1,5 @@
+from sqlalchemy.orm import relationship
+
 from backend.db.session import Base
 from sqlalchemy import Column, String, Integer, Boolean, DateTime
 
@@ -7,6 +9,8 @@ from fastapi_users.db import SQLAlchemyBaseUserTable, SQLAlchemyUserDatabase
 class UserTable(Base, SQLAlchemyBaseUserTable):
     name = Column(String, unique=True)
     date = Column(DateTime)
+    poll = relationship("Poll", back_populates="user")
+    survey = relationship("Survey", back_populates="user")
 
 
 users = UserTable.__table__
@@ -21,5 +25,4 @@ users = UserTable.__table__
 #
 # #     # poll = relationship("Poll", back_populates="user")
 # #     # survey = relationship("Survey", back_populates="user")
-# #     # answer = relationship("Answer", back_populates="user")
-#
+

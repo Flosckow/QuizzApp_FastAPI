@@ -7,6 +7,7 @@ import CreateSurvey from '../components/CreateSurvey.vue'
 import CreatePoll from '../components/CreatePoll.vue'
 import Registration from '../components/users/Registration.vue'
 import Login from '../components/users/Login.vue'
+import One_poll_action from '../components/One_poll_action.vue'
 
 
 Vue.use(VueRouter)
@@ -46,6 +47,12 @@ const routes = [
         path: '/login',
         name: 'Login',
         component: Login
+    },
+    {
+        path: '/one_poll_action/',
+        name: 'One_poll_action',
+        component: One_poll_action,
+        props: true
     }
 ]
 

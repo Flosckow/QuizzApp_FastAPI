@@ -3,17 +3,6 @@ from sqlalchemy.orm import relationship
 from backend.db.session import Base
 
 
-class Survey(Base):
-    __tablename__ = "survey_table"
-
-    id = Column(Integer, primary_key=True, index=True)
-    title = Column(String)
-    description = Column(String)
-
-
-survey = Survey.__table__
-
-
 class Poll(Base):
     __tablename__ = "poll_table"
 
@@ -51,3 +40,28 @@ class Answer(Base):
 
 
 answer = Answer.__table__
+
+
+class AnswerSurvey(Base):
+    __tablename__ = "answer_survey_table"
+
+    id = Column(Integer, primary_key=True)
+    text = Column(String)
+    survey_id = Column(Integer, ForeignKey('survey_table.id', ondelete="CASCADE"))
+
+
+
+answer_survey = AnswerSurvey.__table__
+
+
+class Survey(Base):
+    __tablename__ = "survey_table"
+
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String)
+    description = Column(String)
+    answers = relationship('AnswerSurvey')
+
+
+
+survey = Survey.__table__
